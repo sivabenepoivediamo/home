@@ -1,0 +1,618 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Davide Fumai</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,300&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg:       #ffffff;
+      --surface:  #f5f5f4;
+      --ink:      #0a0a0a;
+      --mid:      #444440;
+      --muted:    #88887f;
+      --faint:    #e8e8e4;
+      --line:     #e0e0dc;
+      --radius:   10px;
+      --max-w:    1040px;
+    }
+    [data-theme="dark"] {
+      --bg:       #0d0d0d;
+      --surface:  #161616;
+      --ink:      #f0f0ec;
+      --mid:      #9a9a94;
+      --muted:    #555550;
+      --faint:    #232320;
+      --line:     #242420;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 15px; -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'DM Sans', system-ui, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      transition: background .3s, color .3s;
+      min-height: 100vh;
+    }
+
+    .wrap {
+      max-width: calc(var(--max-w) + 48px);
+      margin: 0 auto;
+      padding: 0 24px 100px;
+    }
+
+    /* ── Top bar ── */
+    .top-bar {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 6px;
+      padding: 18px 0 0;
+    }
+    .ctrl-btn {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.06em;
+      color: var(--muted);
+      background: none;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 6px 14px;
+      cursor: pointer;
+      transition: color .15s, border-color .15s;
+      line-height: 1;
+    }
+    .ctrl-btn:hover { color: var(--ink); border-color: var(--muted); }
+
+    /* ── Header ── */
+    .site-header {
+      padding: 36px 0 32px;
+      border-bottom: 1px solid var(--line);
+      margin-bottom: 72px;
+    }
+    .name {
+      font-size: clamp(40px, 6.5vw, 68px);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    .name .dim { color: var(--muted); }
+    .bio {
+      font-size: 13px;
+      color: var(--mid);
+      max-width: 500px;
+      line-height: 1.7;
+    }
+    .header-nav {
+      display: flex;
+      gap: 5px;
+      margin-top: 24px;
+      flex-wrap: wrap;
+    }
+    .nav-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--mid);
+      text-decoration: none;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 8px 16px;
+      transition: color .15s, border-color .15s, background .15s;
+    }
+    .nav-pill:hover {
+      color: var(--ink);
+      border-color: var(--muted);
+      background: var(--surface);
+    }
+    .nav-pill .arr { opacity: .45; transition: transform .2s, opacity .2s; }
+    .nav-pill:hover .arr { opacity: 1; }
+    .nav-pill[href^="#"]:hover .arr { transform: translateY(2px); }
+    .nav-pill:not([href^="#"]):hover .arr { transform: translate(2px,-2px); }
+
+    /* ── Section heading ── */
+    .sec-head {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 28px;
+    }
+    .sec-label {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+    .sec-sub {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.07em;
+      color: var(--faint);
+      white-space: nowrap;
+    }
+    [data-theme="dark"] .sec-sub { color: var(--muted); }
+    .sec-rule {
+      flex: 1;
+      height: 1px;
+      background: var(--line);
+    }
+
+    /* ── Section spacing ── */
+    .section { margin-bottom: 72px; }
+
+    /* ── Projects: three-column cards ── */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--line);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+    @media (max-width: 720px) {
+      .projects-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 460px) {
+      .projects-grid { grid-template-columns: 1fr; }
+    }
+
+    .project-card {
+      background: var(--bg);
+      padding: 30px 28px 26px;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      transition: background .15s;
+      position: relative;
+    }
+    .project-card:hover { background: var(--surface); }
+
+    .card-eye {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 14px;
+    }
+    .card-title {
+      font-size: 21px;
+      font-weight: 600;
+      letter-spacing: -0.025em;
+      line-height: 1.15;
+      margin-bottom: 10px;
+    }
+    .card-desc {
+      font-size: 13px;
+      color: var(--mid);
+      line-height: 1.65;
+      flex: 1;
+    }
+    .card-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      margin-top: 20px;
+    }
+    .tag {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.05em;
+      padding: 4px 9px;
+      border-radius: 4px;
+      background: var(--faint);
+      color: var(--mid);
+    }
+    .card-arr {
+      position: absolute;
+      top: 28px;
+      right: 26px;
+      font-size: 13px;
+      color: var(--faint);
+      transition: color .15s, transform .2s;
+    }
+    .project-card:hover .card-arr { color: var(--muted); transform: translate(2px,-2px); }
+
+    /* ── Discography: single wide row ── */
+    .disco-card {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 30px 28px 26px;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 24px;
+      transition: background .15s, border-color .15s;
+      position: relative;
+    }
+    .disco-card:hover {
+      background: var(--surface);
+      border-color: var(--muted);
+    }
+    .disco-left { flex: 1; min-width: 0; }
+    .disco-eye {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+    .disco-title {
+      font-size: 21px;
+      font-weight: 600;
+      letter-spacing: -0.025em;
+      margin-bottom: 8px;
+    }
+    .disco-desc {
+      font-size: 13px;
+      color: var(--mid);
+      line-height: 1.65;
+      max-width: 520px;
+    }
+    .disco-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      margin-top: 18px;
+    }
+    .disco-arr {
+      font-size: 14px;
+      color: var(--muted);
+      flex-shrink: 0;
+      transition: transform .2s;
+    }
+    .disco-card:hover .disco-arr { transform: translate(2px,-2px); }
+
+    /* ── CV + Contacts: two-col ── */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    @media (max-width: 560px) {
+      .two-col { grid-template-columns: 1fr; }
+    }
+
+    .flat-card {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 28px 26px;
+      display: flex;
+      flex-direction: column;
+      text-decoration: none;
+      color: inherit;
+      transition: background .15s, border-color .15s;
+    }
+    .flat-card:hover {
+      background: var(--surface);
+      border-color: var(--muted);
+    }
+    .flat-card-label {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+    .flat-card-title {
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      margin-bottom: 8px;
+    }
+    .flat-card-desc {
+      font-size: 13px;
+      color: var(--mid);
+      line-height: 1.65;
+      flex: 1;
+    }
+    .flat-card-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 20px;
+      transition: color .15s;
+    }
+    .flat-card:hover .flat-card-cta { color: var(--ink); }
+    .flat-card-cta .arr { transition: transform .2s; }
+    .flat-card:hover .flat-card-cta .arr { transform: translate(2px,-2px); }
+
+    /* Contacts card — not a link, holds links inside */
+    .contacts-card {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 28px 26px;
+      display: flex;
+      flex-direction: column;
+    }
+    .contacts-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 16px;
+      flex: 1;
+    }
+    .contact-row {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 12px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--line);
+    }
+    .contact-row:last-child { border-bottom: none; padding-bottom: 0; }
+    .contact-type {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+    .contact-link {
+      font-size: 13px;
+      color: var(--mid);
+      text-decoration: none;
+      transition: color .15s;
+      text-align: right;
+    }
+    .contact-link:hover { color: var(--ink); }
+
+    /* ── Footer ── */
+    footer {
+      border-top: 1px solid var(--line);
+      padding-top: 22px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .footer-copy {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px;
+      color: var(--muted);
+      letter-spacing: 0.04em;
+    }
+  </style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- Top bar -->
+  <div class="top-bar">
+    <button class="ctrl-btn" id="langToggle">IT</button>
+    <button class="ctrl-btn" id="themeToggle">☀</button>
+  </div>
+
+  <!-- Header -->
+  <header class="site-header">
+    <h1 class="name">Davide <span class="dim">Fumai</span></h1>
+    <p class="bio" id="hdr-bio">
+      Musician, teacher, sound engineer, researcher and audio tool builder based in Bari.
+      I study, play and record music — and occasionally write software
+      for the instruments I wish existed.
+    </p>
+    <nav class="header-nav">
+      <a href="#projects" class="nav-pill"><span id="nav-projects">Projects</span> <span class="arr">↓</span></a>
+      <a href="#discography" class="nav-pill"><span id="nav-disco">Discography</span> <span class="arr">↓</span></a>
+      <a href="#contacts" class="nav-pill"><span id="nav-cv">CV</span> <span class="arr">↓</span></a>
+      <a href="#contacts" class="nav-pill"><span id="nav-contacts">Contacts</span> <span class="arr">↓</span></a>
+    </nav>
+  </header>
+
+  <!-- Projects -->
+  <section class="section" id="projects">
+    <div class="sec-head">
+      <span class="sec-label" id="sec-projects">Projects</span>
+      <span class="sec-rule"></span>
+    </div>
+
+    <div class="projects-grid">
+
+      <a href="https://sivabenepoivediamo.github.io/harmonic-eq/" class="project-card">
+        <span class="card-eye" id="eq-eye">parametric eq · web</span>
+        <span class="card-title">Harmonic EQ</span>
+        <span class="card-desc" id="eq-desc">
+          Uses scales and MIDI input to place EQ bands at musically meaningful frequencies — then lets you invert, mirror, transpose, or spread them as if they were notes.
+        </span>
+        <div class="card-tags">
+          <span class="tag">HTML</span>
+          <span class="tag">CSS</span>
+          <span class="tag">JS</span>
+          <span class="tag">MIDI</span>
+          <span class="tag">Web Audio</span>
+        </div>
+        <span class="card-arr" aria-hidden="true">↗</span>
+      </a>
+
+      <a href="https://sivabenepoivediamo.github.io/ondine/" class="project-card">
+        <span class="card-eye" id="ond-eye">waveform synthesis · web</span>
+        <span class="card-title">Ondine</span>
+        <span class="card-desc" id="ond-desc">
+          Generates waveforms from mathematical functions driven by pitch class sets and scale vectors — timbre as a consequence of harmonic structure.
+        </span>
+        <div class="card-tags">
+          <span class="tag">HTML</span>
+          <span class="tag">CSS</span>
+          <span class="tag">JS</span>
+          <span class="tag">Web Audio</span>
+        </div>
+        <span class="card-arr" aria-hidden="true">↗</span>
+      </a>
+
+      <a href="https://github.com/sivabenepoivediamo/musicplusplus" class="project-card" target="_blank" rel="noopener">
+        <span class="card-eye" id="mpp-eye">c++ library · foundation</span>
+        <span class="card-title">music++</span>
+        <span class="card-desc" id="mpp-desc">
+          C++ Header-only library. Represents scales, chords, and rhythms as vectors and exposes transformations — the same operations Harmonic EQ and Ondine use to manipulate timbre.
+        </span>
+        <div class="card-tags">
+          <span class="tag">C++17</span>
+        </div>
+        <span class="card-arr" aria-hidden="true">↗</span>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- Discography -->
+  <section class="section" id="discography">
+    <div class="sec-head">
+      <span class="sec-label" id="sec-disco">Discography</span>
+      <span class="sec-rule"></span>
+    </div>
+
+    <a href="https://sivabenepoivediamo.github.io/discography/" class="disco-card">
+      <div class="disco-left">
+        <p class="disco-eye" id="disco-eye">music · 2016–2024</p>
+        <p class="disco-title" id="disco-title">Releases</p>
+        <p class="disco-desc" id="disco-desc">
+          LPs, EPs, and singles as performer, composer, and producer.
+          Filterable by format, with Bandcamp and YouTube embeds.
+        </p>
+        <div class="disco-tags">
+        </div>
+      </div>
+      <span class="disco-arr" aria-hidden="true">↗</span>
+    </a>
+  </section>
+
+  <!-- CV + Contacts -->
+  <section class="section" id="contacts">
+    <div class="sec-head">
+      <span class="sec-label" id="sec-cv-contacts">CV &amp; Contacts</span>
+      <span class="sec-rule"></span>
+    </div>
+
+    <div class="two-col">
+
+      <a href="./cv.pdf" class="flat-card" target="_blank" rel="noopener">
+        <p class="flat-card-label" id="cv-label">Curriculum Vitæ</p>
+        <p class="flat-card-title" id="cv-title">Download CV</p>
+        <p class="flat-card-desc" id="cv-desc">
+          Education, professional experience, collaborations, and skills.
+        </p>
+      </a>
+
+      <div class="contacts-card">
+        <p class="flat-card-label" id="contacts-label">Contacts</p>
+        <div class="contacts-list">
+          <div class="contact-row">
+            <span class="contact-type">Email</span>
+            <a href="mailto:fumaidavide@gmail.com" class="contact-link">fumaidavide@gmail.com</a>
+          </div>
+
+          <div class="contact-row">
+            <span class="contact-type">GitHub</span>
+            <a href="https://github.com/sivabenepoivediamo" class="contact-link" target="_blank" rel="noopener">github.com/sivabenepoivediamo</a>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <footer>
+    <span class="footer-copy">© <span id="footer-year"></span> Davide Fumai</span>
+  </footer>
+
+</div>
+<script>
+  const T = {
+    en: {
+      bio: "Musician, teacher, sound engineer, researcher and audio tool builder based in Bari. I study, play and record music — and occasionally write software for the instruments I wish existed.",
+      navProjects: "Projects", navDisco: "Discography", navCv: "CV", navContacts: "Contacts",
+      secProjects: "Projects", secDisco: "Discography", secCvContacts: "CV & Contacts",
+      eqEye: "scale-aware parametric eq · web", eqDesc: "Uses scales and MIDI input to place EQ bands at musically meaningful frequencies — then lets you invert, mirror, transpose, or spread them as if they were notes.",
+      ondEye: "pitch class-based waveform synthesis · web", ondDesc: "Generates waveforms from mathematical functions driven by pitch class sets and scale vectors — timbre as a consequence of harmonic structure.",
+      mppEye: "advanced music theory library · c++", mppDesc: "C++ Header-only library. Represents scales, chords, and rhythms as vectors and exposes transformations — the same operations Harmonic EQ and Ondine use to manipulate timbre.",
+      discoEye: "music · 2016–2026", discoTitle: "Releases", discoDesc: "LPs, EPs, and singles as performer, composer, and sound engineer.",
+      cvLabel: "Curriculum Vitae", cvTitle: "Download CV", cvDesc: "Education, professional experience, collaborations, and skills.",
+      contactsLabel: "Contacts",
+      langBtn: "IT",
+    },
+    it: {
+      bio: "Musicista, insegnante, tecnico del suono, ricercatore e sviluppatore di strumenti audio attualmente a Bari. Studio, suono e registro musica — e di tanto in tanto scrivo software per gli strumenti che vorrei esistessero.",
+      navProjects: "Progetti", navDisco: "Discografia", navCv: "CV", navContacts: "Contatti",
+      secProjects: "Progetti", secDisco: "Discografia", secCvContacts: "CV & Contatti",
+      eqEye: "eq parametrico · web", eqDesc: "Usa scale e input MIDI per posizionare le bande dell'EQ su frequenze musicalmente significative — poi le trasforma come se fossero note: inversione, specchio, trasposizione, espansione.",
+      ondEye: "sintesi di forme d'onda · web", ondDesc: "Genera forme d'onda da funzioni matematiche guidate da insiemi di classi di altezza e vettori di scala — il timbro come conseguenza della struttura armonica.",
+      mppEye: "teoria musicale avanzata · libreria c++", mppDesc: "Libreria header-only in C++. Rappresenta scale, accordi e ritmi come vettori ed espone trasformazioni — le stesse operazioni che Harmonic EQ e Ondine usano per manipolare il timbro.",
+      discoEye: "musica · 2016–2024", discoTitle: "Uscite discografiche", discoDesc: "LP, EP e singoli come esecutore, compositore e tecnico del suono.",
+      cvLabel: "Curriculum Vitae", cvTitle: "Scarica CV", cvDesc: "Formazione, esperienze professionali, collaborazioni e competenze.",
+      contactsLabel: "Contatti",
+      langBtn: "EN",
+    }
+  };
+
+  let lang = 'en', theme = 'dark';
+
+  function applyLang() {
+    const t = T[lang];
+    document.getElementById('hdr-bio').textContent     = t.bio;
+    document.getElementById('nav-projects').textContent= t.navProjects;
+    document.getElementById('nav-disco').textContent   = t.navDisco;
+    document.getElementById('nav-cv').textContent      = t.navCv;
+    document.getElementById('nav-contacts').textContent= t.navContacts;
+    document.getElementById('sec-projects').textContent= t.secProjects;
+    document.getElementById('sec-disco').textContent   = t.secDisco;
+    document.getElementById('sec-cv-contacts').textContent = t.secCvContacts;
+    document.getElementById('eq-eye').textContent      = t.eqEye;
+    document.getElementById('eq-desc').textContent     = t.eqDesc;
+    document.getElementById('ond-eye').textContent     = t.ondEye;
+    document.getElementById('ond-desc').textContent    = t.ondDesc;
+    document.getElementById('mpp-eye').textContent     = t.mppEye;
+    document.getElementById('mpp-desc').textContent    = t.mppDesc;
+    document.getElementById('disco-eye').textContent   = t.discoEye;
+    document.getElementById('disco-title').textContent = t.discoTitle;
+    document.getElementById('disco-desc').textContent  = t.discoDesc;
+    document.getElementById('cv-label').textContent    = t.cvLabel;
+    document.getElementById('cv-title').textContent    = t.cvTitle;
+    document.getElementById('cv-desc').textContent     = t.cvDesc;
+    document.getElementById('contacts-label').textContent = t.contactsLabel;
+    document.getElementById('langToggle').textContent  = t.langBtn;
+    document.documentElement.lang = lang;
+  }
+
+  document.getElementById('langToggle').addEventListener('click', () => {
+    lang = lang === 'en' ? 'it' : 'en';
+    applyLang();
+  });
+
+  document.getElementById('themeToggle').addEventListener('click', () => {
+    theme = theme === 'dark' ? 'light' : 'dark';
+    document.documentElement.dataset.theme = theme === 'dark' ? 'dark' : '';
+    document.getElementById('themeToggle').textContent = theme === 'dark' ? '☀' : '☽';
+  });
+
+  document.getElementById('footer-year').textContent = new Date().getFullYear();
+  applyLang();
+</script>
+</body>
+</html>
