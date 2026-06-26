@@ -159,20 +159,17 @@
     /* ── Section spacing ── */
     .section { margin-bottom: 72px; }
 
-    /* ── Projects: three-column cards ── */
+    /* ── Projects: two-column cards ── */
     .projects-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(2, 1fr);
       gap: 1px;
       background: var(--line);
       border: 1px solid var(--line);
       border-radius: var(--radius);
       overflow: hidden;
     }
-    @media (max-width: 720px) {
-      .projects-grid { grid-template-columns: 1fr 1fr; }
-    }
-    @media (max-width: 460px) {
+    @media (max-width: 540px) {
       .projects-grid { grid-template-columns: 1fr; }
     }
 
