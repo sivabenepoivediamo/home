@@ -483,6 +483,20 @@
         <span class="card-arr" aria-hidden="true">↗</span>
       </a>
 
+      <a href="https://sivabenepoivediamo.github.io/pitchwheel/" class="project-card">
+        <span class="card-eye" id="pw-eye">scale & chord vector generator · web</span>
+        <span class="card-title">pitchwheel</span>
+        <span class="card-desc" id="pw-desc">
+          Applies the vector math from music++ to manipulate and generate scale and chord vectors interactively.
+        </span>
+        <div class="card-tags">
+          <span class="tag">HTML</span>
+          <span class="tag">CSS</span>
+          <span class="tag">JS</span>
+        </div>
+        <span class="card-arr" aria-hidden="true">↗</span>
+      </a>
+
     </div>
   </section>
 
@@ -561,6 +575,7 @@
       eqEye: "scale-aware parametric eq · web", eqDesc: "Uses a scale library and MIDI input to place EQ bands at musically meaningful frequencies, then lets you invert, expand, mirror, transpose, or spread them as a chord.",
       ondEye: "pitch class-based waveform synthesis · web", ondDesc: "Generates waveforms from mathematical functions driven by pitch class sets and scale vectors: timbre as a consequence of harmonic structure.",
       mppEye: "advanced music theory library · c++", mppDesc: "C++ Header-only library. Represents scales, chords, and rhythms as vectors and exposes operations, transformations and algorithms; the same concepts harmonic EQ and ondine use to manipulate timbre.",
+      pwEye: "scale/chord relationship visualizer · web", pwDesc: "Applies the vector math from music++ to manipulate and generate scale and chord vectors interactively.",
       discoEye: "music · 2016–2026", discoTitle: "Releases", discoDesc: "LPs, EPs, and singles as performer, composer, and sound engineer.",
       cvLabel: "Curriculum Vitae", cvTitle: "Download CV", cvDesc: "Education, professional experience, collaborations, and skills.",
       contactsLabel: "Contacts",
@@ -572,7 +587,8 @@
       secProjects: "Progetti", secDisco: "Discografia", secCvContacts: "CV & Contatti",
       eqEye: "eq parametrico · web", eqDesc: "Usa una libreria di scale e l'input MIDI per posizionare le bande dell'EQ su frequenze corrispondenti a note, per poi applicare trasformazioni musicali come rivolti, mirroring, trasposizione, espansione.",
       ondEye: "sintesi di forme d'onda · web", ondDesc: "Genera forme d'onda con funzioni matematiche a partire da vettori di scala: il timbro come conseguenza della struttura armonica.",
-      mppEye: "teoria musicale avanzata · libreria c++", mppDesc: "Libreria header-only in C++. Rappresenta scale, accordi e ritmi come vettori e presenta operazioni, trasformazioni e algoritmi; gli stessi concetti che harmonic EQ e ondine usano per manipolare il timbro.",
+      mppEye: "teoria musicale · libreria c++", mppDesc: "Libreria header-only in C++. Rappresenta scale, accordi e ritmi come vettori e presenta operazioni, trasformazioni e algoritmi; gli stessi concetti che harmonic EQ e ondine usano per manipolare il timbro.",
+      pwEye: "relazione scala-accordo · web", pwDesc: "Applica la matematica vettoriale di music++ per manipolare e generare vettori di scale e accordi in modo interattivo.",
       discoEye: "musica · 2016–2024", discoTitle: "Uscite discografiche", discoDesc: "LP, EP e singoli come esecutore, compositore e tecnico del suono.",
       cvLabel: "Curriculum Vitae", cvTitle: "Scarica CV", cvDesc: "Formazione, esperienze professionali, collaborazioni e competenze.",
       contactsLabel: "Contatti",
@@ -598,6 +614,8 @@
     document.getElementById('ond-desc').textContent    = t.ondDesc;
     document.getElementById('mpp-eye').textContent     = t.mppEye;
     document.getElementById('mpp-desc').textContent    = t.mppDesc;
+    document.getElementById('pw-eye').textContent      = t.pwEye;
+    document.getElementById('pw-desc').textContent     = t.pwDesc;
     document.getElementById('disco-eye').textContent   = t.discoEye;
     document.getElementById('disco-title').textContent = t.discoTitle;
     document.getElementById('disco-desc').textContent  = t.discoDesc;
