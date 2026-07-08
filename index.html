@@ -200,6 +200,7 @@
       line-height: 1.15;
       margin-bottom: 10px;
     }
+    .card-title .dim { color: var(--mid); }
     .card-desc {
       font-size: 13px;
       color: var(--mid);
@@ -437,9 +438,24 @@
 
     <div class="projects-grid">
 
+      <a href="https://sivabenepoivediamo.github.io/melodythesaurus/" class="project-card">
+        <span class="card-eye" id="mt-eye">melodic pattern generator · web</span>
+        <span class="card-title">melody<span class="dim">thesaurus</span></span>
+        <span class="card-desc" id="mt-desc">
+          Generalized melodic pattern generator based on Nicolas Slonimsky's Thesaurus of Musical Scales and Patterns.
+        </span>
+        <div class="card-tags">
+          <span class="tag">HTML</span>
+          <span class="tag">CSS</span>
+          <span class="tag">JS</span>
+          <span class="tag">Web Audio</span>
+        </div>
+        <span class="card-arr" aria-hidden="true">↗</span>
+      </a>
+
       <a href="https://sivabenepoivediamo.github.io/rhythmlab/" class="project-card">
         <span class="card-eye" id="rl-eye">modular pattern generator · web</span>
-        <span class="card-title">rhythmlab</span>
+        <span class="card-title">rhythm<span class="dim">lab</span></span>
         <span class="card-desc" id="rl-desc">
           Generates rhythmic patterns from euclidean, Clough–Douthett, deep rhythm, and tihai algorithms, with nested grid subdivisions and tap-tempo playback.
         </span>
@@ -454,7 +470,7 @@
 
       <a href="https://sivabenepoivediamo.github.io/pitchwheel/" class="project-card">
         <span class="card-eye" id="pw-eye">scale & chord vector generator · web</span>
-        <span class="card-title">pitchwheel</span>
+        <span class="card-title">pitch<span class="dim">wheel</span></span>
         <span class="card-desc" id="pw-desc">
           Applies the vector math from music++ to manipulate and generate scale and chord vectors interactively.
         </span>
@@ -469,7 +485,7 @@
 
       <a href="https://sivabenepoivediamo.github.io/harmonic-eq/" class="project-card">
         <span class="card-eye" id="eq-eye">parametric eq · web</span>
-        <span class="card-title">harmonic EQ</span>
+        <span class="card-title">harmonic<span class="dim">EQ</span></span>
         <span class="card-desc" id="eq-desc">
           Uses a scale library and MIDI input to place EQ bands at musically meaningful frequencies, then lets you invert, expand, mirror, transpose, or spread them as a chord.
         </span>
@@ -500,7 +516,7 @@
 
       <a href="https://github.com/sivabenepoivediamo/musicplusplus" class="project-card" target="_blank" rel="noopener">
         <span class="card-eye" id="mpp-eye">c++ library · foundation</span>
-        <span class="card-title">music++</span>
+        <span class="card-title">music<span class="dim">++</span></span>
         <span class="card-desc" id="mpp-desc">
           C++ Header-only library. Represents scales, chords, and rhythms as vectors and exposes transformations; the same concepts Harmonic EQ and Ondine use to manipulate timbre.
         </span>
@@ -585,10 +601,11 @@
       bio: "Musician, teacher, sound engineer, researcher and developer based in Bari. I study, play, teach and record music - and occasionally write software for the instruments I wish existed.",
       navProjects: "Projects", navDisco: "Discography", navCv: "CV", navContacts: "Contacts",
       secProjects: "Projects", secDisco: "Discography", secCvContacts: "CV & Contacts",
-      rlEye: "modular pattern generator · web", rlDesc: "Generates rhythmic patterns from euclidean, Clough–Douthett, deep rhythm, and tihai algorithms, with nested grid subdivisions and tap-tempo playback.",
+      mtEye: "melodic pattern generator · web", mtDesc: "Generalized melodic pattern generator based on Nicolas Slonimsky's Thesaurus of Musical Scales and Patterns.",
+      rlEye: "rhythmic pattern generator · web", rlDesc: "Generates rhythmic patterns from euclidean, Clough–Douthett, deep rhythm, and tihai algorithms, with nested grid subdivisions and tap-tempo playback.",
       eqEye: "scale-aware parametric eq · web", eqDesc: "Uses a scale library and MIDI input to place EQ bands at musically meaningful frequencies, then lets you invert, expand, mirror, transpose, or spread them as a chord.",
       ondEye: "pitch class-based waveform synthesis · web", ondDesc: "Generates waveforms from mathematical functions driven by pitch class sets and scale vectors: timbre as a consequence of harmonic structure.",
-      mppEye: "advanced music theory library · c++", mppDesc: "C++ Header-only library. Represents scales, chords, and rhythms as vectors and exposes operations, transformations and algorithms; the same concepts harmonic EQ and ondine use to manipulate timbre.",
+      mppEye: "music theory library · c++", mppDesc: "C++ Header-only library. Represents scales, chords, and rhythms as vectors and exposes operations, transformations and algorithms; the same concepts harmonic EQ and ondine use to manipulate timbre.",
       pwEye: "scale/chord relationship visualizer · web", pwDesc: "Applies the vector math from music++ to manipulate and generate scale and chord vectors interactively.",
       discoEye: "music · 2016–2026", discoTitle: "Releases", discoDesc: "LPs, EPs, and singles as performer, composer, and sound engineer.",
       cvLabel: "Curriculum Vitae", cvTitle: "Download CV", cvDesc: "Education, professional experience, collaborations, and skills.",
@@ -599,6 +616,7 @@
       bio: "Musicista, insegnante, tecnico del suono, ricercatore e sviluppatore attualmente a Bari. Studio, suono, insegno e registro musica - e di tanto in tanto scrivo software per gli strumenti che vorrei esistessero.",
       navProjects: "Progetti", navDisco: "Discografia", navCv: "CV", navContacts: "Contatti",
       secProjects: "Progetti", secDisco: "Discografia", secCvContacts: "CV & Contatti",
+      mtEye: "generatore di pattern melodici · web", mtDesc: "Generatore di pattern melodici basato sul Thesaurus of Scales and Melodic Patterns di Nicolas Slonimsky.",
       rlEye: "generatore di pattern ritmici · web", rlDesc: "Genera pattern ritmici con l'algoritmo euclideo delle divisioni successive, e altri criteri (Clough–Douthett, deep rhythm e tihai), con una griglia di suddivisioni e priorità metriche e dinamiche.",
       eqEye: "eq parametrico · web", eqDesc: "Usa una libreria di scale e l'input MIDI per posizionare le bande dell'EQ su frequenze corrispondenti a note, per poi applicare trasformazioni musicali come rivolti, mirroring, trasposizione, espansione.",
       ondEye: "sintesi di forme d'onda · web", ondDesc: "Genera forme d'onda con funzioni matematiche a partire da vettori di scala: il timbro come conseguenza della struttura armonica.",
@@ -623,6 +641,8 @@
     document.getElementById('sec-projects').textContent= t.secProjects;
     document.getElementById('sec-disco').textContent   = t.secDisco;
     document.getElementById('sec-cv-contacts').textContent = t.secCvContacts;
+    document.getElementById('mt-eye').textContent      = t.mtEye;
+    document.getElementById('mt-desc').textContent     = t.mtDesc;
     document.getElementById('rl-eye').textContent      = t.rlEye;
     document.getElementById('rl-desc').textContent     = t.rlDesc;
     document.getElementById('eq-eye').textContent      = t.eqEye;
