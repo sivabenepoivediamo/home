@@ -164,8 +164,6 @@
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 1px;
-      background: var(--line);
-      border: 1px solid var(--line);
       border-radius: var(--radius);
       overflow: hidden;
     }
@@ -182,8 +180,10 @@
       flex-direction: column;
       transition: background .15s;
       position: relative;
+      border: 1px solid var(--line);
+      margin: -0.5px;
     }
-    .project-card:hover { background: var(--surface); }
+    .project-card:hover { background: var(--surface); z-index: 1; }
 
     .card-eye {
       font-family: 'IBM Plex Mono', monospace;
@@ -438,6 +438,21 @@
 
     <div class="projects-grid">
 
+      <a href="https://sivabenepoivediamo.github.io/contrapunctum/" class="project-card">
+        <span class="card-eye" id="cp-eye">counterpoint generator · web</span>
+        <span class="card-title">contra<span class="dim">punctum</span></span>
+        <span class="card-desc" id="cp-desc">
+          Generalized diatonic and chromatic counterpoint generator: applies vector transformations to a melody to exploit all its compositional possibilities.
+        </span>
+        <div class="card-tags">
+          <span class="tag">HTML</span>
+          <span class="tag">CSS</span>
+          <span class="tag">JS</span>
+          <span class="tag">Web Audio</span>
+        </div>
+        <span class="card-arr" aria-hidden="true">↗</span>
+      </a>
+
       <a href="https://sivabenepoivediamo.github.io/melodythesaurus/" class="project-card">
         <span class="card-eye" id="mt-eye">melodic pattern generator · web</span>
         <span class="card-title">melody<span class="dim">thesaurus</span></span>
@@ -601,6 +616,7 @@
       bio: "Musician, teacher, sound engineer, researcher and developer based in Bari. I study, play, teach and record music - and occasionally write software for the instruments I wish existed.",
       navProjects: "Projects", navDisco: "Discography", navCv: "CV", navContacts: "Contacts",
       secProjects: "Projects", secDisco: "Discography", secCvContacts: "CV & Contacts",
+      cpEye: "counterpoint generator · web", cpDesc: "Generalized diatonic and chromatic counterpoint generator: applies vector transformations to a melody to exploit all its compositional possibilities.",
       mtEye: "melodic pattern generator · web", mtDesc: "Generalized melodic pattern generator based on Nicolas Slonimsky's Thesaurus of Musical Scales and Patterns.",
       rlEye: "rhythmic pattern generator · web", rlDesc: "Generates rhythmic patterns from euclidean, Clough–Douthett, deep rhythm, and tihai algorithms, with nested grid subdivisions and tap-tempo playback.",
       eqEye: "scale-aware parametric eq · web", eqDesc: "Uses a scale library and MIDI input to place EQ bands at musically meaningful frequencies, then lets you invert, expand, mirror, transpose, or spread them as a chord.",
@@ -616,6 +632,7 @@
       bio: "Musicista, insegnante, tecnico del suono, ricercatore e sviluppatore attualmente a Bari. Studio, suono, insegno e registro musica - e di tanto in tanto scrivo software per gli strumenti che vorrei esistessero.",
       navProjects: "Progetti", navDisco: "Discografia", navCv: "CV", navContacts: "Contatti",
       secProjects: "Progetti", secDisco: "Discografia", secCvContacts: "CV & Contatti",
+      cpEye: "generatore di contrappunto · web", cpDesc: "Generatore di contrappunto diatonico e cromatico generalizzato: applica trasformazioni vettoriali a una melodia per sfruttarne tutte le possibilità compositive.",
       mtEye: "generatore di pattern melodici · web", mtDesc: "Generatore di pattern melodici basato sul Thesaurus of Scales and Melodic Patterns di Nicolas Slonimsky.",
       rlEye: "generatore di pattern ritmici · web", rlDesc: "Genera pattern ritmici con l'algoritmo euclideo delle divisioni successive, e altri criteri (Clough–Douthett, deep rhythm e tihai), con una griglia di suddivisioni e priorità metriche e dinamiche.",
       eqEye: "eq parametrico · web", eqDesc: "Usa una libreria di scale e l'input MIDI per posizionare le bande dell'EQ su frequenze corrispondenti a note, per poi applicare trasformazioni musicali come rivolti, mirroring, trasposizione, espansione.",
@@ -641,6 +658,8 @@
     document.getElementById('sec-projects').textContent= t.secProjects;
     document.getElementById('sec-disco').textContent   = t.secDisco;
     document.getElementById('sec-cv-contacts').textContent = t.secCvContacts;
+    document.getElementById('cp-eye').textContent      = t.cpEye;
+    document.getElementById('cp-desc').textContent     = t.cpDesc;
     document.getElementById('mt-eye').textContent      = t.mtEye;
     document.getElementById('mt-desc').textContent     = t.mtDesc;
     document.getElementById('rl-eye').textContent      = t.rlEye;
